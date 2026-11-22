@@ -1,0 +1,1353 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vela — AI-Powered Commerce, Directed.</title>
+    <meta
+      name="description"
+      content="Create flagship online stores with an optional AI Designer, instant theme-matched AI studio product photography, and predictive AI commerce analytics."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('vela-theme');
+          if (saved === 'dark') {
+            document.documentElement.classList.add('dark');
+          } else if (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="grain-overlay" aria-hidden="true"></div>
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+    <!-- ====================================================================
+         NAVBAR
+         ==================================================================== -->
+    <header class="site-header" id="siteHeader">
+      <div class="nav-shell">
+        <a href="#" class="brand-link" aria-label="Vela Home">
+          <svg class="brand-logo" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path
+              d="M7 25C7 14.5 13.5 7 24.5 5.5C22.2 14.2 17.8 21.8 11.2 26.2L7 25Z"
+              fill="currentColor"
+            />
+            <path
+              d="M15.5 26.5C19.8 22.8 23.2 17.2 25.5 11.2C26.1 17.8 24.2 23.1 20.4 26.5H15.5Z"
+              fill="var(--accent-primary)"
+            />
+          </svg>
+          <span class="brand-name">Vela</span>
+          <span class="brand-badge">Commerce OS</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#workflow">Workflow</a>
+          <a href="#ai-studio">AI Studio</a>
+          <a href="#store-builder">Store Builder</a>
+          <a href="#analytics">Analytics</a>
+          <a href="#pricing">Pricing</a>
+        </nav>
+
+        <div class="nav-actions">
+          <div class="theme-switch" role="group" aria-label="Color theme">
+            <span class="theme-switch__thumb" aria-hidden="true"></span>
+            <button
+              type="button"
+              id="btnThemeLight"
+              aria-label="Warm Alabaster light mode"
+              aria-pressed="true"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+              </svg>
+            </button>
+            <button
+              type="button"
+              id="btnThemeDark"
+              aria-label="Obsidian Atelier dark mode"
+              aria-pressed="false"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+              </svg>
+            </button>
+          </div>
+
+          <button type="button" class="btn btn--ink btn--nav-cta js-open-launch">
+            <span>Start Building</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17 17 7M7 7h10v10"></path>
+            </svg>
+          </button>
+
+          <button
+            type="button"
+            class="icon-btn mobile-menu-btn"
+            id="mobileMenuBtn"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="4" x2="20" y1="8" y2="8"></line>
+              <line x1="4" x2="20" y1="16" y2="16"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="mobile-drawer" id="mobileDrawer">
+        <a href="#workflow">Workflow</a>
+        <a href="#ai-studio">AI Studio</a>
+        <a href="#store-builder">Store Builder</a>
+        <a href="#analytics">Analytics</a>
+        <a href="#pricing">Pricing</a>
+        <button type="button" class="btn btn--ink js-open-launch" style="margin-top: 0.5rem; width: 100%; padding: 0.75rem;">
+          Start Building
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <!-- ====================================================================
+           HERO WITH MULTI-DEPTH SCROLL & 3D TILT PARALLAX
+           ==================================================================== -->
+      <section class="hero" id="heroSection">
+        <div class="hero-bg-layer" id="heroBgLayer" aria-hidden="true">
+          <div class="arch-grid"></div>
+          <div class="hero-glow"></div>
+        </div>
+
+        <div class="container">
+          <div class="hero-copy">
+            <div class="status-pill">
+              <span class="pulse-dot" aria-hidden="true"></span>
+              <span>AI STORE DESIGNER · STUDIO PHOTOGRAPHY · PREDICTIVE ANALYTICS</span>
+            </div>
+
+            <h1 class="hero-headline">
+              Launch stores that look
+              <span class="font-serif-italic accent-italic">art-directed</span>
+              from day one.
+            </h1>
+
+            <p class="hero-subtitle">
+              Create your flagship online store, craft every detail by hand or with an
+              optional AI Designer, transform phone snapshots into theme-matched studio
+              photography, and scale with predictive commerce analytics.
+            </p>
+
+            <div class="hero-ctas">
+              <button type="button" class="btn btn--primary js-open-launch">
+                <span>Create your storefront</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M13 5l7 7-7 7"></path>
+                </svg>
+              </button>
+              <a href="#ai-studio" class="btn btn--outline">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path>
+                  <circle cx="12" cy="13" r="3"></circle>
+                </svg>
+                <span>Try AI Photo Studio</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Multi-Plane 3D Parallax Stage -->
+          <div class="hero-stage" id="heroStage">
+            <!-- CENTER PLANE: Flagship Live Storefront -->
+            <div class="hero-browser surface-float" id="heroCenterPlane">
+              <div class="browser-chrome">
+                <div class="window-dots" aria-hidden="true">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="url-pill">
+                  <span class="url-dot"></span>
+                  <span>kuro-atelier.vela.shop</span>
+                </div>
+                <div class="ai-sync-badge">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3Z"></path>
+                  </svg>
+                  <span>AI Theme Synced</span>
+                </div>
+              </div>
+
+              <div class="hero-storefront-grid">
+                <div>
+                  <div class="store-meta-top">
+                    <span>KURO CERAMICS</span>
+                    <span>ARCHIVE 04</span>
+                  </div>
+                  <p class="store-theme-label" id="heroThemeLabel">Warm Alabaster Theme</p>
+                  <h2 class="store-hero-title">Hand-thrown stoneware for slow mornings.</h2>
+                  <p class="store-hero-desc">
+                    Every product photograph in this storefront was automatically relit,
+                    staged on matching stone, and color-harmonized to your live theme tokens.
+                  </p>
+
+                  <div class="store-sku-bar">
+                    <div>
+                      <p class="sku-label">Featured SKU</p>
+                      <p class="sku-name">Shigaraki Pour-Over Set · $128</p>
+                    </div>
+                    <div class="swatch-row" aria-label="Theme color swatches">
+                      <span class="swatch-dot" id="heroSwatch1" style="background: #faf9f6"></span>
+                      <span class="swatch-dot" id="heroSwatch2" style="background: #e5ddd0"></span>
+                      <span class="swatch-dot" style="background: var(--accent-primary)"></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="hero-product-frame">
+                  <img
+                    id="heroStudioImg"
+                    src="./images/product-studio-light.jpg"
+                    alt="AI studio rendered stoneware pour-over carafe matched to live storefront theme"
+                  />
+                  <div class="photo-exif-pill">
+                    <span style="display: inline-flex; align-items: center; gap: 6px; font-weight: 500;">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F26B43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 4V2M15 16v-2M8 9h2M20 9h2M17.8 11.8 19 13M15 9h0M17.8 6.2 19 5M3 21l9-9M12.2 6.2 11 5"></path>
+                      </svg>
+                      Vela Studio Render
+                    </span>
+                    <span class="font-mono" id="heroExifSpec" style="font-size: 0.64rem; opacity: 0.85;">
+                      5200K SUN · TRAVERTINE
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- LEFT FOREGROUND PARALLAX PLANE: Raw Upload -> AI Studio -->
+            <div class="hero-float-card hero-float-left surface-float" id="heroLeftPlane">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <span class="font-mono" style="font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted);">
+                  Raw Upload Input
+                </span>
+                <span class="pill-accent">1.8s AI</span>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 0.75rem; margin-top: 0.7rem;">
+                <div class="raw-thumb-box">
+                  <img src="./images/product-raw.jpg" alt="Raw smartphone snapshot on oak table" />
+                  <div class="scanline" aria-hidden="true"></div>
+                </div>
+                <div style="min-width: 0;">
+                  <p style="margin: 0; font-size: 0.76rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                    IMG_4029_table.jpg
+                  </p>
+                  <p style="margin: 0.25rem 0 0; font-size: 0.69rem; line-height: 1.4; color: var(--text-secondary);">
+                    Clutter removed, relit to match live store palette.
+                  </p>
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 0.75rem; padding-top: 0.6rem; border-top: 1px solid var(--border-subtle); font-size: 0.7rem;">
+                <span style="display: inline-flex; align-items: center; gap: 4px; color: var(--accent-emerald); font-weight: 600;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 6 9 17l-5-5"></path>
+                  </svg>
+                  Theme Harmonized
+                </span>
+                <span class="font-mono" style="font-size: 0.62rem; color: var(--text-muted);">4K PNG</span>
+              </div>
+            </div>
+
+            <!-- RIGHT FOREGROUND PARALLAX PLANE: Live AI Conversion Pulse -->
+            <div class="hero-float-card hero-float-right surface-float" id="heroRightPlane">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <span style="display: inline-flex; align-items: center; gap: 5px; font-family: var(--font-mono); font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted);">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--accent-emerald)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                    <polyline points="16 7 22 7 22 13"></polyline>
+                  </svg>
+                  AI Conversion Pulse
+                </span>
+                <span class="pill-emerald">+38.4%</span>
+              </div>
+
+              <div style="margin-top: 0.65rem; display: flex; align-items: baseline; gap: 0.45rem;">
+                <span style="font-size: 1.55rem; font-weight: 600; letter-spacing: -0.025em;">$148.9k</span>
+                <span style="font-size: 0.74rem; color: var(--text-secondary);">30d GMV</span>
+              </div>
+
+              <svg viewBox="0 0 200 48" style="width: 100%; height: 42px; margin-top: 0.6rem; overflow: visible;">
+                <defs>
+                  <linearGradient id="heroSparkGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="var(--accent-emerald)" stop-opacity="0.28"></stop>
+                    <stop offset="100%" stop-color="var(--accent-emerald)" stop-opacity="0"></stop>
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M0 40 C 28 38, 42 32, 65 29 C 88 26, 106 16, 132 14 C 156 12, 174 8, 200 4 L 200 48 L 0 48 Z"
+                  fill="url(#heroSparkGrad)"
+                ></path>
+                <path
+                  d="M0 40 C 28 38, 42 32, 65 29 C 88 26, 106 16, 132 14 C 156 12, 174 8, 200 4"
+                  fill="none"
+                  stroke="var(--accent-emerald)"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                ></path>
+                <circle cx="200" cy="4" r="3.5" fill="var(--accent-emerald)"></circle>
+              </svg>
+
+              <p style="margin: 0.5rem 0 0; font-size: 0.7rem; line-height: 1.45; color: var(--text-secondary);">
+                Studio-rendered PDPs doubled add-to-cart rate vs. raw uploads.
+              </p>
+            </div>
+
+            <!-- BOTTOM TIP PILL -->
+            <div class="hero-tip-pill" id="heroTipPill">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent-primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="21" x2="14" y1="4" y2="4"></line>
+                <line x1="10" x2="3" y1="4" y2="4"></line>
+                <line x1="21" x2="12" y1="12" y2="12"></line>
+                <line x1="8" x2="3" y1="12" y2="12"></line>
+                <line x1="21" x2="16" y1="20" y2="20"></line>
+                <line x1="12" x2="3" y1="20" y2="20"></line>
+                <line x1="14" x2="14" y1="2" y2="6"></line>
+                <line x1="8" x2="8" y1="10" y2="14"></line>
+                <line x1="16" x2="16" y1="18" y2="22"></line>
+              </svg>
+              <span>
+                Tip: Switch <strong style="color: var(--text-primary);">Light / Dark</strong> in the navbar — watch the storefront & studio lighting adapt live.
+              </span>
+            </div>
+          </div>
+
+          <!-- Merchant Strip -->
+          <div class="merchant-strip reveal">
+            <p class="merchant-strip-label">Trusted by independent flagships & modern D2C studios</p>
+            <div class="merchant-logos">
+              <span>KURO CERAMICS</span>
+              <span>SOLSTICE BOTANICALS</span>
+              <span>MAISON SABLE</span>
+              <span>ATELIER NORD</span>
+              <span>VERDANT OBJECTS</span>
+              <span>MARE LEATHER</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           STICKY SCROLL-PINNED NARRATIVE ("FROM SNAPSHOT TO FLAGSHIP")
+           ==================================================================== -->
+      <section class="section" id="workflow">
+        <div class="container">
+          <div style="max-width: 660px;" class="reveal">
+            <p class="eyebrow">From Snapshot to Flagship</p>
+            <h2 class="section-title">
+              One seamless pipeline from <span class="font-serif-italic">upload</span> to
+              <span class="font-serif-italic">scale.</span>
+            </h2>
+          </div>
+
+          <div class="narrative-grid">
+            <div class="narrative-chapters">
+              <article class="chapter-card is-active" data-step="0">
+                <div class="chapter-head">
+                  <span class="chapter-icon">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path>
+                      <circle cx="12" cy="13" r="3"></circle>
+                    </svg>
+                  </span>
+                  <span class="chapter-index">01 / DROP RAW PRODUCT PHOTOS</span>
+                </div>
+                <h3 class="chapter-title">Shoot on your phone. Skip the $8,000 studio day.</h3>
+                <p class="chapter-text">
+                  Upload casual snapshots straight from your desk, warehouse, or kitchen table.
+                  Vela isolates your product while locking physical geometry, ceramic glaze
+                  speckles, and silhouettes with zero distortion.
+                </p>
+                <span class="chapter-meta">RAW JPEG / HEIC · ZERO MASKING REQUIRED</span>
+              </article>
+
+              <article class="chapter-card" data-step="1">
+                <div class="chapter-head">
+                  <span class="chapter-icon">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3Z"></path>
+                    </svg>
+                  </span>
+                  <span class="chapter-index">02 / THEME-MATCHED AI DIRECTION</span>
+                </div>
+                <h3 class="chapter-title">Every image adapts to your storefront’s exact mood.</h3>
+                <p class="chapter-text">
+                  Switch your storefront from sunlit travertine to nocturnal basalt—Vela
+                  automatically relights, restages, and color-grades your entire catalog so every
+                  SKU feels shot on the same editorial set.
+                </p>
+                <span class="chapter-meta">AUTO PALETTE SYNC · 4K STUDIO OUTPUT · 1.8S / SKU</span>
+              </article>
+
+              <article class="chapter-card" data-step="2">
+                <div class="chapter-head">
+                  <span class="chapter-icon">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="18" x2="18" y1="20" y2="10"></line>
+                      <line x1="12" x2="12" y1="20" y2="4"></line>
+                      <line x1="6" x2="6" y1="20" y2="14"></line>
+                    </svg>
+                  </span>
+                  <span class="chapter-index">03 / CLOSED-LOOP AI ANALYTICS</span>
+                </div>
+                <h3 class="chapter-title">See exactly which visuals & layouts drive revenue.</h3>
+                <p class="chapter-text">
+                  Vela connects creative decisions directly to conversion velocity, contribution
+                  margin, and 30-day demand forecasts—so your storefront keeps getting sharper
+                  while you sell.
+                </p>
+                <span class="chapter-meta">VISUAL ATTRIBUTION · DEMAND FORECASTING · MARGIN GUARD</span>
+              </article>
+            </div>
+
+            <div class="narrative-sticky-wrap">
+              <div class="narrative-sticky">
+                <div class="narrative-viewport surface-float" id="narrativeViewport">
+                  <div class="viewport-topbar">
+                    <div class="step-pills" id="narrativeStepPills">
+                      <button type="button" class="is-active" data-step="0">01</button>
+                      <button type="button" data-step="1">02</button>
+                      <button type="button" data-step="2">03</button>
+                    </div>
+                    <span class="font-mono" id="narrativeStatus" style="font-size: 0.68rem; color: var(--text-muted);">
+                      SOURCE: CAMERA ROLL
+                    </span>
+                  </div>
+
+                  <div class="narrative-stage">
+                    <img
+                      src="./images/product-raw.jpg"
+                      alt="Raw kitchen table phone snapshot"
+                      class="narrative-layer is-visible"
+                      id="narrativeImgRaw"
+                    />
+                    <img
+                      src="./images/product-studio-light.jpg"
+                      alt="AI art-directed studio photograph"
+                      class="narrative-layer"
+                      id="narrativeImgStudio"
+                    />
+
+                    <!-- Step 0 Overlay -->
+                    <div class="narrative-overlay is-visible" id="narrativeOverlay0">
+                      <div class="bbox-frame">
+                        <span class="bbox-tag">OBJECT ISOLATED · 99.4% MASK</span>
+                      </div>
+                    </div>
+
+                    <!-- Step 1 Overlay -->
+                    <div class="narrative-overlay" id="narrativeOverlay1">
+                      <div class="lighting-callout">
+                        <div class="font-mono" style="font-size: 0.62rem; color: #f26b43;">THEME SYNC ACTIVE</div>
+                        <div id="narrativeLightingNote" style="margin-top: 2px; font-weight: 500;">
+                          Plinth & lighting matched to Alabaster
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Step 2 Overlay -->
+                    <div class="narrative-overlay" id="narrativeOverlay2">
+                      <div class="telemetry-overlay" id="narrativeTelemetry">
+                        <div>
+                          <div class="font-mono" style="font-size: 0.6rem; opacity: 0.68;">PDP CONV.</div>
+                          <div style="margin-top: 4px; font-size: 1.15rem; font-weight: 600; color: #34d399;">5.84%</div>
+                        </div>
+                        <div>
+                          <div class="font-mono" style="font-size: 0.6rem; opacity: 0.68;">VISUAL LIFT</div>
+                          <div style="margin-top: 4px; font-size: 1.15rem; font-weight: 600;">+36.2%</div>
+                        </div>
+                        <div>
+                          <div class="font-mono" style="font-size: 0.6rem; opacity: 0.68;">30D FORECAST</div>
+                          <div style="margin-top: 4px; font-size: 1.15rem; font-weight: 600; color: #e5b869;">$24.6k</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           INTERACTIVE AI PRODUCT STUDIO COMPARATOR
+           ==================================================================== -->
+      <section class="section" id="ai-studio">
+        <div class="container">
+          <div class="section-header-split reveal">
+            <div style="max-width: 640px;">
+              <p class="eyebrow">AI Product Studio</p>
+              <h2 class="section-title">
+                Upload a snapshot. Get <span class="font-serif-italic">theme-matched</span>
+                editorial photography.
+              </h2>
+            </div>
+            <p class="section-desc" style="max-width: 420px; margin-top: 0;">
+              Drag the studio curtain and switch storefront themes below. Vela harmonizes
+              shadows, stone plinths, and ambient light to your exact brand palette.
+            </p>
+          </div>
+
+          <div class="studio-grid">
+            <!-- Left Draggable Comparator -->
+            <div class="comparator-shell surface-float">
+              <div
+                class="comparator-viewport"
+                id="studioComparator"
+                role="slider"
+                aria-label="Compare raw upload with AI studio render"
+                aria-valuemin="6"
+                aria-valuemax="94"
+                aria-valuenow="54"
+                tabindex="0"
+              >
+                <img
+                  id="studioAfterImg"
+                  src="./images/product-studio-light.jpg"
+                  alt="AI theme-matched studio render"
+                  class="comparator-img"
+                  draggable="false"
+                />
+
+                <div class="comparator-before-clip" id="studioBeforeClip">
+                  <img
+                    src="./images/product-raw.jpg"
+                    alt="Raw unedited seller product photo"
+                    class="comparator-img"
+                    draggable="false"
+                  />
+                </div>
+
+                <div class="relight-overlay" id="relightOverlay">
+                  <div class="relight-pill">
+                    <svg class="spin" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F26B43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path>
+                      <path d="M21 3v5h-5"></path>
+                    </svg>
+                    <span id="relightLabel">Relighting studio set...</span>
+                  </div>
+                </div>
+
+                <div class="comparator-badge comparator-badge--left">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path>
+                    <circle cx="12" cy="13" r="3"></circle>
+                  </svg>
+                  <span>Raw Seller Upload</span>
+                </div>
+
+                <div class="comparator-badge comparator-badge--right">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#F26B43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3Z"></path>
+                  </svg>
+                  <span id="studioAfterBadge">Vela Studio · Alabaster Daylight</span>
+                </div>
+
+                <div class="comparator-divider" id="studioDivider">
+                  <div class="comparator-handle" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="18 8 22 12 18 16"></polyline>
+                      <polyline points="6 8 2 12 6 16"></polyline>
+                      <line x1="2" x2="22" y1="12" y2="12"></line>
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="photo-exif-pill" style="z-index: 10;">
+                  <span class="font-mono" id="studioLightingSpec" style="font-size: 0.64rem;">
+                    5200K Window Key + Soft Fill
+                  </span>
+                  <div style="display: flex; align-items: center; gap: 0.6rem;">
+                    <span class="font-mono" id="studioLensSpec" style="font-size: 0.64rem; opacity: 0.78;">
+                      85mm · f/2.8
+                    </span>
+                    <span class="pill-emerald" id="studioLiftBadge">+34.8% CVR</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Theme-Matching Console -->
+            <div class="studio-console surface-card">
+              <div>
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                  <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle>
+                      <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle>
+                      <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle>
+                      <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle>
+                      <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path>
+                    </svg>
+                    <h3 style="margin: 0; font-size: 0.92rem; font-weight: 600;">Match Storefront Theme</h3>
+                  </div>
+                  <span class="font-mono" id="studioRenderTime" style="font-size: 0.68rem; color: var(--text-muted);">
+                    Render: 1.8s
+                  </span>
+                </div>
+
+                <div class="preset-list" id="studioPresetList"></div>
+
+                <div class="toggle-list">
+                  <span class="font-mono" style="font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--text-muted);">
+                    Studio Engine Parameters
+                  </span>
+
+                  <button type="button" class="toggle-row js-param-toggle" role="switch" aria-checked="true">
+                    <div>
+                      <div style="font-size: 0.78rem; font-weight: 600;">Auto-match live storefront palette</div>
+                      <div style="font-size: 0.7rem; color: var(--text-muted);">Syncs background temperature & shadow hue</div>
+                    </div>
+                    <span class="switch-track"></span>
+                  </button>
+
+                  <button type="button" class="toggle-row js-param-toggle" role="switch" aria-checked="true">
+                    <div>
+                      <div style="font-size: 0.78rem; font-weight: 600;">100% geometry & glaze lock</div>
+                      <div style="font-size: 0.7rem; color: var(--text-muted);">Zero hallucinated labels, shapes, or materials</div>
+                    </div>
+                    <span class="switch-track"></span>
+                  </button>
+
+                  <button type="button" class="toggle-row js-param-toggle" role="switch" aria-checked="false">
+                    <div>
+                      <div style="font-size: 0.78rem; font-weight: 600;">Generate 4 PDP angles + macro</div>
+                      <div style="font-size: 0.7rem; color: var(--text-muted);">Hero, detail zoom, overhead, editorial crop</div>
+                    </div>
+                    <span class="switch-track"></span>
+                  </button>
+                </div>
+              </div>
+
+              <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border-subtle);">
+                <button
+                  type="button"
+                  id="batchApplyBtn"
+                  class="btn btn--ink"
+                  style="width: 100%; padding: 0.85rem 1.25rem;"
+                >
+                  Batch Apply "Alabaster Daylight" to 48 SKUs
+                </button>
+                <p class="font-mono" style="margin: 0.7rem 0 0; text-align: center; font-size: 0.64rem; color: var(--text-muted);">
+                  WEBP + 4K PNG · AUTO EDGE CDN OPTIMIZATION
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           STOREFRONT BUILDER & OPTIONAL AI DESIGNER
+           ==================================================================== -->
+      <section class="section" id="store-builder">
+        <div class="container">
+          <div class="section-header-split reveal">
+            <div style="max-width: 650px;">
+              <p class="eyebrow">Storefront Builder · Optional AI Designer</p>
+              <h2 class="section-title">
+                Full creative authorship. <span class="font-serif-italic">AI co-pilot</span> only when you want it.
+              </h2>
+              <p class="section-desc">
+                Design directly with tactile layout grids and live typography tokens—or
+                toggle on the AI Designer to compose entire flagship collections and sync
+                matching studio photography in one prompt.
+              </p>
+            </div>
+
+            <div class="mode-toggle surface-card" role="group" aria-label="Builder design mode">
+              <button type="button" id="btnModeManual">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="21" x2="14" y1="4" y2="4"></line>
+                  <line x1="10" x2="3" y1="4" y2="4"></line>
+                  <line x1="21" x2="12" y1="12" y2="12"></line>
+                  <line x1="8" x2="3" y1="12" y2="12"></line>
+                  <line x1="21" x2="16" y1="20" y2="20"></line>
+                  <line x1="12" x2="3" y1="20" y2="20"></line>
+                  <line x1="14" x2="14" y1="2" y2="6"></line>
+                  <line x1="8" x2="8" y1="10" y2="14"></line>
+                  <line x1="16" x2="16" y1="18" y2="22"></line>
+                </svg>
+                <span>Manual Studio</span>
+              </button>
+              <button type="button" id="btnModeAi" class="is-active-ai">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3Z"></path>
+                </svg>
+                <span>AI Designer On</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="builder-grid">
+            <!-- Left Control Rail -->
+            <div class="builder-rail surface-card">
+              <div>
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+                  <span class="font-mono" id="builderRailLabel" style="font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted);">
+                    AI Direction Prompts
+                  </span>
+                  <span class="pill-accent" id="builderModeBadge">Co-Pilot Active</span>
+                </div>
+
+                <!-- AI Designer Panel -->
+                <div id="builderAiPanel">
+                  <p style="margin: 0 0 0.9rem; font-size: 0.78rem; line-height: 1.55; color: var(--text-secondary);">
+                    Click a brief to watch Vela compose layout hierarchy, typography,
+                    palette, and studio product photography live:
+                  </p>
+                  <div id="storePromptList" style="display: flex; flex-direction: column; gap: 0.65rem;"></div>
+                </div>
+
+                <!-- Manual Studio Panel -->
+                <div id="builderManualPanel" style="display: none;">
+                  <p style="margin: 0 0 1rem; font-size: 0.78rem; line-height: 1.55; color: var(--text-secondary);">
+                    Zero AI lock-in. Edit surface tokens, typography pairing, and grid
+                    rhythm manually at any time.
+                  </p>
+
+                  <span class="font-mono" style="font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted);">
+                    Surface System
+                  </span>
+                  <div id="manualSurfaceBtns" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-top: 0.5rem;"></div>
+
+                  <span class="font-mono" style="display: block; margin-top: 1.25rem; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted);">
+                    Grid Rhythm
+                  </span>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.5rem;">
+                    <button type="button" class="btn btn--ink js-density-btn" data-density="airy" style="border-radius: 12px; padding: 0.55rem;">
+                      Editorial Airy
+                    </button>
+                    <button type="button" class="btn btn--outline js-density-btn" data-density="compact" style="border-radius: 12px; padding: 0.55rem;">
+                      Compact Grid
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div style="padding: 1rem; border-radius: 16px; border: 1px solid var(--border-subtle); background-color: var(--bg-surface-subtle);">
+                <div style="display: flex; align-items: center; gap: 0.45rem; font-size: 0.72rem; font-weight: 600; color: var(--accent-emerald);">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <path d="m9 11 3 3L22 4"></path>
+                  </svg>
+                  <span>Live Storefront Sync</span>
+                </div>
+                <p id="builderAiNote" style="margin: 0.45rem 0 0; font-size: 0.76rem; line-height: 1.55; color: var(--text-secondary);"></p>
+              </div>
+            </div>
+
+            <!-- Right Live Morphing Storefront Preview -->
+            <div class="store-preview-shell surface-float">
+              <div class="browser-chrome">
+                <div class="window-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                <span class="font-mono" id="previewDomain" style="font-size: 0.7rem; color: var(--text-secondary);">
+                  https://kuro-ceramics.vela.shop
+                </span>
+                <span class="font-mono" id="previewModeTag" style="font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted);">
+                  AI Composed
+                </span>
+              </div>
+
+              <div class="store-preview-canvas preview-kyoto" id="storePreviewCanvas">
+                <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 1rem; border-bottom: 1px solid var(--pv-border);">
+                  <span id="previewBrandName" style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em;">
+                    KURO STUDIO
+                  </span>
+                  <div style="display: flex; gap: 1.4rem; font-size: 0.72rem; opacity: 0.7;">
+                    <span>Shop All</span>
+                    <span>Collections</span>
+                    <span>Journal</span>
+                  </div>
+                  <span class="font-mono" style="font-size: 0.72rem;">Bag (2)</span>
+                </div>
+
+                <div class="preview-hero-grid">
+                  <div>
+                    <span
+                      style="display: inline-block; padding: 0.2rem 0.65rem; border-radius: 999px; background: var(--pv-accent); color: #fff; font-family: var(--font-mono); font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em;"
+                    >
+                      New Release
+                    </span>
+                    <h3 id="previewHeadline" class="font-serif-display" style="margin: 0.75rem 0 0; font-size: clamp(1.9rem, 3vw, 2.55rem); line-height: 1.06;">
+                      Quiet rituals, thrown by hand.
+                    </h3>
+                    <p id="previewSubcopy" style="margin: 0.75rem 0 0; font-size: 0.84rem; line-height: 1.55; color: var(--pv-muted);">
+                      Small-batch stoneware vessels fired in Shigaraki clay.
+                    </p>
+                    <div style="margin-top: 1.25rem; display: flex; align-items: center; gap: 1rem;">
+                      <span style="padding: 0.55rem 1.1rem; border-radius: 999px; background: var(--pv-accent); color: #fff; font-size: 0.76rem; font-weight: 600;">
+                        Explore Collection
+                      </span>
+                      <span style="font-size: 0.76rem; opacity: 0.75; text-decoration: underline; text-underline-offset: 4px;">
+                        Lookbook
+                      </span>
+                    </div>
+                  </div>
+
+                  <div style="border-radius: 16px; overflow: hidden; border: 1px solid var(--pv-border); background: var(--pv-card);">
+                    <img
+                      id="previewHeroImg"
+                      src="./images/product-studio-light.jpg"
+                      alt="Live storefront hero preview"
+                      style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover;"
+                    />
+                  </div>
+                </div>
+
+                <div class="preview-subgrid">
+                  <div class="preview-mini-card">
+                    <img id="previewSecImg1" src="./images/showcase-perfume.jpg" alt="Amber Vetiver Extrait" style="width: 48px; height: 56px; border-radius: 10px; object-fit: cover; flex-shrink: 0;" />
+                    <div>
+                      <div id="previewSecTitle1" style="font-size: 0.78rem; font-weight: 600;">Amber Vetiver Extrait</div>
+                      <div id="previewSecPrice1" class="font-mono" style="margin-top: 2px; font-size: 0.68rem; color: var(--pv-muted);">$165 · Studio Synced</div>
+                    </div>
+                  </div>
+                  <div class="preview-mini-card">
+                    <img id="previewSecImg2" src="./images/product-studio-botanical.jpg" alt="Botanical Pour-Over Set" style="width: 48px; height: 56px; border-radius: 10px; object-fit: cover; flex-shrink: 0;" />
+                    <div>
+                      <div id="previewSecTitle2" style="font-size: 0.78rem; font-weight: 600;">Botanical Pour-Over Set</div>
+                      <div id="previewSecPrice2" class="font-mono" style="margin-top: 2px; font-size: 0.68rem; color: var(--pv-muted);">$134 · Studio Synced</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           OPPOSING 3-COLUMN PARALLAX GALLERY ("BUILT ON VELA")
+           ==================================================================== -->
+      <section class="section" id="gallery" style="overflow: hidden;">
+        <div class="container">
+          <div style="max-width: 620px; margin-inline: auto; text-align: center;" class="reveal">
+            <p class="eyebrow">Built on Vela</p>
+            <h2 class="section-title">
+              A gallery of <span class="font-serif-italic">living</span> flagships.
+            </h2>
+            <p class="section-desc">
+              Every storefront below launched in an afternoon—complete with AI-lit studio
+              catalog photography tailored to each brand’s exact palette.
+            </p>
+          </div>
+
+          <div class="gallery-grid" id="parallaxGallery">
+            <div class="gallery-col" data-parallax-col="-46">
+              <article class="gallery-card surface-card">
+                <div class="gallery-img-wrap">
+                  <img src="./images/product-studio-light.jpg" alt="Kuro Ceramics Alabaster storefront" loading="lazy" />
+                  <span class="gallery-metric">+38% CVR</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.85rem; padding: 0 0.35rem 0.2rem;">
+                  <div>
+                    <h3 style="margin: 0; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em;">KURO CERAMICS</h3>
+                    <p style="margin: 2px 0 0; font-size: 0.74rem; color: var(--text-secondary);">Homeware · Alabaster Theme</p>
+                  </div>
+                  <div class="swatch-row">
+                    <span class="swatch-dot" style="width: 14px; height: 14px; background: #faf9f6;"></span>
+                    <span class="swatch-dot" style="width: 14px; height: 14px; background: #dfd6c7;"></span>
+                    <span class="swatch-dot" style="width: 14px; height: 14px; background: #d9532f;"></span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="gallery-card surface-card">
+                <div class="gallery-img-wrap">
+                  <img src="./images/product-studio-botanical.jpg" alt="Solstice Objects Botanical storefront" loading="lazy" />
+                  <span class="gallery-metric">+44% Mobile ATC</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.85rem; padding: 0 0.35rem 0.2rem;">
+                  <div>
+                    <h3 style="margin: 0; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em;">SOLSTICE OBJECTS</h3>
+                    <p style="margin: 2px 0 0; font-size: 0.74rem; color: var(--text-secondary);">Tableware · Botanical Theme</p>
+                  </div>
+                  <div class="swatch-row">
+                    <span class="swatch-dot" style="width: 14px; height: 14px; background: #dce2d8;"></span>
+                    <span class="swatch-dot" style="width: 14px; height: 14px; background: #c67d5b;"></span>
+                    <span class="swatch-dot" style="width: 14px; height: 14px; background: #1e6b52;"></span>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="gallery-col gallery-col--center" data-parallax-col="52">
+              <article class="gallery-card surface-card">
+                <div class="gallery-img-wrap">
+                  <img src="./images/showcase-bag.jpg" alt="Maison Sable Obsidian leather goods" loading="lazy" />
+                  <span class="gallery-metric">$294 AOV</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.85rem; padding: 0 0.35rem 0.2rem;">
+                  <div>
+                    <h3 style="margin: 0; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em;">MAISON SABLE</h3>
+                    <p style="margin: 2px 0 0; font-size: 0.74rem; color: var(--text-secondary);">Leather Goods · Obsidian Theme</p>
+                  </div>
+                  <div class="swatch-row">
+                    <span class="swatch-dot" style="width: 14px; height: 14px; background: #101014;"></span>
+                    <span class="swatch-dot" style="width: 14px; height: 14px; background: #6e432b;"></span>
+                    <span class="swatch-dot" style="width: 14px; height: 14px; background: #e5b869;"></span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="gallery-card surface-card">
+                <div class="gallery-img-wrap">
+                  <img src="./images/product-studio-dark.jpg" alt="Nocturne Brew Obsidian storefront" loading="lazy" />
+                  <span class="gallery-metric">+41% Studio Lift</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.85rem; padding: 0 0.35rem 0.2rem;">
+                  <div>
+                    <h3 style="margin: 0; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em;">NOCTURNE BREW</h3>
+                    <p style="margin: 2px 0 0; font-size: 0.74rem; color: var(--text-secondary);">Coffee Hardware · Noir Theme</p>
+                  </div>
+                  <div class="swatch-row">
+                    <span class="swatch-dot" style="width: 14px; height: 14px; background: #0e0e12;"></span>
+                    <span class="swatch-dot" style="width: 14px; height: 14px; background: #2d2926;"></span>
+                    <span class="swatch-dot" style="width: 14px; height: 14px; background: #f26b43;"></span>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="gallery-col" data-parallax-col="-40">
+              <article class="gallery-card surface-card">
+                <div class="gallery-img-wrap">
+                  <img src="./images/showcase-perfume.jpg" alt="Verdant Apothecary Fragrance studio render" loading="lazy" />
+                  <span class="gallery-metric">2.4× ROAS</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.85rem; padding: 0 0.35rem 0.2rem;">
+                  <div>
+                    <h3 style="margin: 0; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em;">VERDANT APOTHECARY</h3>
+                    <p style="margin: 2px 0 0; font-size: 0.74rem; color: var(--text-secondary);">Fragrance · Limestone Theme</p>
+                  </div>
+                  <div class="swatch-row">
+                    <span class="swatch-dot" style="width: 14px; height: 14px; background: #f2ece1;"></span>
+                    <span class="swatch-dot" style="width: 14px; height: 14px; background: #b8763c;"></span>
+                    <span class="swatch-dot" style="width: 14px; height: 14px; background: #181818;"></span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="gallery-card surface-card">
+                <div class="gallery-img-wrap">
+                  <img src="./images/product-studio-light.jpg" alt="Atelier Nord Editorial Objects" loading="lazy" />
+                  <span class="gallery-metric">0.5s LCP</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.85rem; padding: 0 0.35rem 0.2rem;">
+                  <div>
+                    <h3 style="margin: 0; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em;">ATELIER NORD</h3>
+                    <p style="margin: 2px 0 0; font-size: 0.74rem; color: var(--text-secondary);">Design Objects · Editorial Theme</p>
+                  </div>
+                  <div class="swatch-row">
+                    <span class="swatch-dot" style="width: 14px; height: 14px; background: #f6f4ef;"></span>
+                    <span class="swatch-dot" style="width: 14px; height: 14px; background: #cfc7b8;"></span>
+                    <span class="swatch-dot" style="width: 14px; height: 14px; background: #141413;"></span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           AI COMMERCE ANALYTICS SHOWCASE
+           ==================================================================== -->
+      <section class="section" id="analytics">
+        <div class="container">
+          <div class="section-header-split reveal">
+            <div style="max-width: 650px;">
+              <p class="eyebrow eyebrow--emerald">AI Commerce Intelligence</p>
+              <h2 class="section-title">
+                Analytics that <span class="font-serif-italic">think ahead</span> of your next drop.
+              </h2>
+              <p class="section-desc">
+                Vela attributes revenue down to individual studio lighting presets, predicts
+                stockouts before they happen, and surfaces one-click margin recommendations.
+              </p>
+            </div>
+
+            <div class="tf-switcher surface-card" id="timeframeSwitcher" role="group" aria-label="Analytics timeframe">
+              <button type="button" data-tf="7D">7D</button>
+              <button type="button" data-tf="30D" class="is-active">30D</button>
+              <button type="button" data-tf="90D">90D</button>
+              <button type="button" data-tf="FORECAST">Forecast +30D</button>
+            </div>
+          </div>
+
+          <!-- 4 KPI Cards -->
+          <div class="kpi-grid" id="kpiGrid"></div>
+
+          <!-- Main Analytics Workspace -->
+          <div class="analytics-grid">
+            <!-- Left Interactive SVG Chart -->
+            <div class="chart-card surface-float">
+              <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 1rem;">
+                <div>
+                  <h3 style="margin: 0; font-size: 0.94rem; font-weight: 600;">
+                    Revenue Trajectory & AI Demand Forecast
+                  </h3>
+                  <p style="margin: 0.25rem 0 0; font-size: 0.78rem; color: var(--text-secondary);">
+                    Hover or click any point to inspect AI visual attribution & velocity.
+                  </p>
+                </div>
+                <div class="font-mono" style="display: flex; gap: 1rem; font-size: 0.66rem; color: var(--text-muted);">
+                  <span style="display: inline-flex; align-items: center; gap: 6px;">
+                    <span style="width: 8px; height: 8px; border-radius: 99px; background: var(--accent-primary);"></span>
+                    Actual GMV
+                  </span>
+                  <span style="display: inline-flex; align-items: center; gap: 6px;">
+                    <span style="width: 8px; height: 8px; border-radius: 99px; border: 1.5px dashed var(--accent-emerald);"></span>
+                    AI Forecast
+                  </span>
+                </div>
+              </div>
+
+              <div style="margin-top: 1.5rem;" id="analyticsChartContainer"></div>
+
+              <div
+                id="chartTelemetryBar"
+                style="margin-top: 1.25rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 0.85rem 1rem; border-radius: 16px; border: 1px solid var(--border-subtle); background-color: var(--bg-surface-subtle);"
+              ></div>
+            </div>
+
+            <!-- Right Interactive Ask Vela AI Analyst -->
+            <div class="analyst-card surface-card">
+              <div>
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                  <span style="width: 36px; height: 36px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; background: var(--accent-emerald-soft); color: var(--accent-emerald);">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"></path>
+                      <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"></path>
+                      <path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"></path>
+                    </svg>
+                  </span>
+                  <div>
+                    <h3 style="margin: 0; font-size: 0.92rem; font-weight: 600;">Ask Vela AI Analyst</h3>
+                    <p style="margin: 0; font-size: 0.72rem; color: var(--text-muted);">
+                      Real-time store, creative & inventory reasoning
+                    </p>
+                  </div>
+                </div>
+
+                <div id="analystQuestionList" style="margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.55rem;"></div>
+
+                <div
+                  id="analystAnswerBox"
+                  style="margin-top: 1.2rem; padding: 1.15rem; border-radius: 18px; border: 1px solid var(--border-subtle); background-color: var(--bg-surface-subtle);"
+                ></div>
+              </div>
+
+              <div class="font-mono" style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; font-size: 0.62rem; color: var(--text-muted);">
+                <span>STRIPE · SHOPIFY MIGRATION READY</span>
+                <span>99.98% SLA</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           PRICING & PARALLAX CTA
+           ==================================================================== -->
+      <section class="section" id="pricing">
+        <div class="container">
+          <div class="section-header-split reveal">
+            <div style="max-width: 580px;">
+              <p class="eyebrow">Transparent Pricing</p>
+              <h2 class="section-title">
+                Replace your store host, photo studio, and <span class="font-serif-italic">BI stack.</span>
+              </h2>
+            </div>
+
+            <div class="tf-switcher surface-card" id="billingToggle" role="group" aria-label="Billing period">
+              <button type="button" data-billing="monthly">Monthly</button>
+              <button type="button" data-billing="annual" class="is-active">
+                Annual <span style="margin-left: 4px; color: var(--accent-primary);">-20%</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="pricing-grid">
+            <article class="plan-card surface-card">
+              <div>
+                <h3 style="margin: 0; font-size: 1rem; font-weight: 600;">Studio Starter</h3>
+                <p style="margin: 0.45rem 0 0; font-size: 0.8rem; color: var(--text-secondary);">
+                  For solo founders launching their first curated brand.
+                </p>
+                <div style="margin-top: 1.4rem; display: flex; align-items: baseline; gap: 0.35rem;">
+                  <span class="js-plan-price" data-monthly="39" data-annual="29" style="font-size: 2.35rem; font-weight: 600; letter-spacing: -0.03em;">$29</span>
+                  <span class="font-mono" style="font-size: 0.72rem; color: var(--text-muted);">/ month</span>
+                </div>
+                <ul class="plan-features">
+                  <li>✓ 1 flagship storefront + custom domain</li>
+                  <li>✓ Manual Studio + optional AI Designer</li>
+                  <li>✓ 150 AI Studio product renders / mo</li>
+                  <li>✓ Core revenue & visual lift analytics</li>
+                  <li>✓ 0% Vela transaction fees</li>
+                </ul>
+              </div>
+              <button type="button" class="btn btn--outline js-open-launch" style="margin-top: 2rem; width: 100%;">
+                Start 14-day free trial
+              </button>
+            </article>
+
+            <article class="plan-card plan-card--featured surface-float">
+              <div>
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                  <h3 style="margin: 0; font-size: 1rem; font-weight: 600;">Flagship Pro</h3>
+                  <span class="pill-accent">Most Popular</span>
+                </div>
+                <p style="margin: 0.45rem 0 0; font-size: 0.8rem; color: var(--text-secondary);">
+                  For growing D2C brands scaling catalogs & seasonal drops.
+                </p>
+                <div style="margin-top: 1.4rem; display: flex; align-items: baseline; gap: 0.35rem;">
+                  <span class="js-plan-price" data-monthly="99" data-annual="79" style="font-size: 2.35rem; font-weight: 600; letter-spacing: -0.03em;">$79</span>
+                  <span class="font-mono" style="font-size: 0.72rem; color: var(--text-muted);">/ month</span>
+                </div>
+                <ul class="plan-features">
+                  <li>✓ Unlimited storefronts & seasonal capsules</li>
+                  <li>✓ Unlimited theme-synced AI Studio renders</li>
+                  <li>✓ 4-angle PDP generation & 4K export</li>
+                  <li>✓ Predictive demand & inventory AI analyst</li>
+                  <li>✓ Time-of-day adaptive light/dark visuals</li>
+                </ul>
+              </div>
+              <button type="button" class="btn btn--primary js-open-launch" style="margin-top: 2rem; width: 100%;">
+                Start 14-day free trial
+              </button>
+            </article>
+
+            <article class="plan-card surface-card">
+              <div>
+                <h3 style="margin: 0; font-size: 1rem; font-weight: 600;">Atelier Enterprise</h3>
+                <p style="margin: 0.45rem 0 0; font-size: 0.8rem; color: var(--text-secondary);">
+                  For multi-brand houses and high-volume commerce teams.
+                </p>
+                <div style="margin-top: 1.4rem; display: flex; align-items: baseline; gap: 0.35rem;">
+                  <span class="js-plan-price" data-monthly="299" data-annual="249" style="font-size: 2.35rem; font-weight: 600; letter-spacing: -0.03em;">$249</span>
+                  <span class="font-mono" style="font-size: 0.72rem; color: var(--text-muted);">/ month</span>
+                </div>
+                <ul class="plan-features">
+                  <li>✓ Fine-tuned custom brand lighting models</li>
+                  <li>✓ Headless API & webhook commerce pipelines</li>
+                  <li>✓ Dedicated art-direction onboarding</li>
+                  <li>✓ Multi-warehouse margin intelligence</li>
+                  <li>✓ SSO, RBAC & 99.99% enterprise SLA</li>
+                </ul>
+              </div>
+              <button type="button" class="btn btn--outline js-open-launch" style="margin-top: 2rem; width: 100%;">
+                Contact Atelier Sales
+              </button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final Parallax CTA Banner -->
+      <div class="container">
+        <section class="cta-banner" id="ctaBanner">
+          <div class="cta-bg-parallax" id="ctaBgParallax" aria-hidden="true">
+            <img src="./images/product-studio-dark.jpg" alt="" />
+            <div class="cta-bg-scrim"></div>
+          </div>
+          <div style="position: relative; z-index: 2; max-width: 640px; margin-inline: auto;">
+            <p class="eyebrow" style="color: #f26b43;">Ready in under 5 minutes</p>
+            <h2 style="margin: 0.9rem 0 0; font-size: clamp(2.3rem, 5vw, 3.85rem); line-height: 1.05; letter-spacing: -0.035em; color: #fff;">
+              Your products deserve a
+              <span class="font-serif-italic" style="color: #e5b869;">flagship.</span>
+            </h2>
+            <p style="margin: 1.25rem auto 0; max-width: 480px; font-size: 0.95rem; line-height: 1.65; color: rgba(255,255,255,0.78);">
+              Upload your first three products, test the AI Designer or craft by hand, and
+              preview your theme-matched studio lookbook before paying a cent.
+            </p>
+            <div style="margin-top: 2.25rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.85rem;">
+              <button type="button" class="btn btn--primary js-open-launch">
+                <span>Launch your Vela store</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M13 5l7 7-7 7"></path>
+                </svg>
+              </button>
+              <a
+                href="#ai-studio"
+                class="btn"
+                style="padding: 0.82rem 1.5rem; border-color: rgba(255,255,255,0.22); background: rgba(255,255,255,0.1); color: #fff;"
+              >
+                Revisit AI Photo Studio
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- ====================================================================
+         FOOTER
+         ==================================================================== -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="brand-link">
+              <svg class="brand-logo" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                <path d="M7 25C7 14.5 13.5 7 24.5 5.5C22.2 14.2 17.8 21.8 11.2 26.2L7 25Z" fill="currentColor" />
+                <path d="M15.5 26.5C19.8 22.8 23.2 17.2 25.5 11.2C26.1 17.8 24.2 23.1 20.4 26.5H15.5Z" fill="var(--accent-primary)" />
+              </svg>
+              <span class="brand-name">Vela</span>
+            </div>
+            <p style="margin: 0.9rem 0 0; max-width: 300px; font-size: 0.79rem; line-height: 1.6; color: var(--text-secondary);">
+              The AI-native commerce studio for independent sellers and flagship brands.
+              Directed storefronts, theme-matched product photography, and predictive
+              analytics in one workspace.
+            </p>
+            <button
+              type="button"
+              id="footerThemeToggle"
+              class="btn btn--outline"
+              style="margin-top: 1.25rem; padding: 0.45rem 0.9rem; font-family: var(--font-mono); font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.08em;"
+            >
+              Theme: Warm Alabaster · Switch
+            </button>
+          </div>
+
+          <div class="footer-cols">
+            <div>
+              <p class="font-mono" style="margin: 0; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--text-muted);">
+                Platform
+              </p>
+              <ul>
+                <li><a href="#store-builder">Storefront Builder</a></li>
+                <li><a href="#store-builder">Optional AI Designer</a></li>
+                <li><a href="#ai-studio">AI Photo Studio</a></li>
+                <li><a href="#analytics">Commerce Analytics</a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="font-mono" style="margin: 0; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--text-muted);">
+                Resources
+              </p>
+              <ul>
+                <li><a href="#gallery">Flagship Gallery</a></li>
+                <li><a href="#ai-studio">Lighting Presets</a></li>
+                <li><a href="#workflow">Shopify Migration</a></li>
+                <li><a href="#pricing">Enterprise API</a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="font-mono" style="margin: 0; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--text-muted);">
+                Company
+              </p>
+              <ul>
+                <li><a href="#workflow">About Vela</a></li>
+                <li><a href="#gallery">Design Philosophy</a></li>
+                <li><a href="#analytics">Changelog</a></li>
+                <li><a href="#pricing">Contact Sales</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; font-size: 0.74rem; color: var(--text-muted);">
+          <span>© 2026 Vela Commerce Inc. All rights reserved.</span>
+          <span class="font-mono" style="font-size: 0.65rem; letter-spacing: 0.14em;">COMMERCE, DIRECTED.</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ====================================================================
+         LAUNCH STOREFRONT SANDBOX MODAL
+         ==================================================================== -->
+    <div class="modal-backdrop" id="launchModal" role="dialog" aria-modal="true" aria-labelledby="launchModalTitle">
+      <div class="modal-panel surface-float">
+        <button
+          type="button"
+          id="closeModalBtn"
+          class="icon-btn"
+          aria-label="Close modal"
+          style="position: absolute; top: 18px; right: 18px;"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18M6 6l12 12"></path>
+          </svg>
+        </button>
+
+        <form id="launchForm">
+          <p class="eyebrow">Instant Storefront Provisioning</p>
+          <h3 id="launchModalTitle" style="margin: 0.5rem 0 0; font-size: 1.5rem; font-weight: 600; letter-spacing: -0.025em;">
+            Initialize your Vela flagship
+          </h3>
+          <p style="margin: 0.45rem 0 0; font-size: 0.8rem; color: var(--text-secondary);">
+            Name your store and choose whether to co-design with AI or start from a manual canvas.
+          </p>
+
+          <div style="margin-top: 1.4rem;">
+            <label for="modalStoreName" class="font-mono" style="display: block; font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted);">
+              Storefront Name
+            </label>
+            <input
+              id="modalStoreName"
+              type="text"
+              value="Atelier Kova"
+              style="margin-top: 0.45rem; width: 100%; padding: 0.72rem 0.95rem; border-radius: 12px; border: 1px solid var(--border-strong); background: var(--bg-surface-subtle); font-size: 0.88rem; outline: none;"
+            />
+            <p class="font-mono" style="margin: 0.45rem 0 0; font-size: 0.68rem; color: var(--text-muted);">
+              Preview URL: <strong id="modalSlugPreview" style="color: var(--text-primary);">atelier-kova.vela.shop</strong>
+            </p>
+          </div>
+
+          <div style="margin-top: 1.25rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem;">
+            <button type="button" class="prompt-card is-active js-modal-mode" data-mode="ai">
+              <div style="font-size: 0.78rem; font-weight: 600;">With AI Designer</div>
+              <div style="margin-top: 2px; font-size: 0.7rem; color: var(--text-secondary);">Auto-layout + studio lighting</div>
+            </button>
+            <button type="button" class="prompt-card js-modal-mode" data-mode="manual">
+              <div style="font-size: 0.78rem; font-weight: 600;">Manual Canvas</div>
+              <div style="margin-top: 2px; font-size: 0.7rem; color: var(--text-secondary);">Full direct grid & token control</div>
+            </button>
+          </div>
+
+          <button type="submit" class="btn btn--primary" style="margin-top: 1.6rem; width: 100%;">
+            Provision Storefront Sandbox
+          </button>
+        </form>
+
+        <div id="launchSuccess" style="display: none; text-align: center; padding: 1rem 0;">
+          <div style="width: 48px; height: 48px; margin-inline: auto; border-radius: 16px; background: var(--accent-emerald-soft); color: var(--accent-emerald); display: flex; align-items: center; justify-content: center;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <path d="m9 11 3 3L22 4"></path>
+            </svg>
+          </div>
+          <h3 id="launchSuccessTitle" style="margin: 1rem 0 0; font-size: 1.45rem; font-weight: 600;">Atelier Kova is staged.</h3>
+          <p id="launchSuccessDesc" style="margin: 0.6rem 0 0; font-size: 0.82rem; line-height: 1.6; color: var(--text-secondary);"></p>
+          <button type="button" id="launchDoneBtn" class="btn btn--ink" style="margin-top: 1.5rem; padding: 0.7rem 1.6rem;">
+            Return to Landing Page
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
